@@ -26,16 +26,18 @@ export function MyTasksList({ tasks, onLongPress, onPress }: MyTasksListProps) {
       keyExtractor={item => String(item.id)}
       renderItem={({ item, index }) => {
         return (
-          <TouchableOpacity
+          <TouchableOpacity style={item.done ? styles.taskButtonDone : styles.taskButton}
             testID={`button-${index}`}
             activeOpacity={0.7}
+            onPress={() => onPress(item.id)}
+            onLongPress={() => onLongPress(item.id)}
             //TODO - use onPress, onLongPress and style props
           >
-            <View 
+            <View style={item.done ? styles.taskMarkerDone : styles.taskMarker }
               testID={`marker-${index}`}
               //TODO - use style prop 
             />
-            <Text 
+            <Text style={item.done ? styles.taskTextDone : styles.taskText}
               //TODO - use style prop
             >
               {item.title}
